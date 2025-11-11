@@ -61,7 +61,7 @@ export class HomePage {
         this.carregando = false;
       },
       error: (err: any) => { // <-- tipo corrigido
-        console.error('Erro ao buscar eventos:', err);
+        console.error('ERRO COMPLETO DA API:', err);
         this.carregando = false;
       }
     });

@@ -1,1 +1,1 @@
-export const GCP_API_KEY = 'AlzaSyBomQQTtbRfS56IfY-JR_aBaiP72qPF_0g';
+export const GCP_API_KEY = 'AIzaSyBomQqTTbRfS56IfY-JR_aBaiP72qPF_0g';

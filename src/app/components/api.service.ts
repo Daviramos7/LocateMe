@@ -6,8 +6,8 @@
   import { map } from 'rxjs/operators';
 
   // definimos o endpoint base para o Places API (Text Search para busca)
-  const PLACES_API_URL = 'https://maps.googleapis.com/maps/api/place/textsearch/json';
-  const PLACE_DETAILS_API_URL = 'https://maps.googleapis.com/maps/api/place/details/json';
+  const PLACES_API_URL = '/api/maps/api/place/textsearch/json';
+  const PLACE_DETAILS_API_URL = '/api/maps/api/place/details/json';
 
   // interfaces de Tipo para tipagem forte
   export interface Place {
