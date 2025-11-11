@@ -1,0 +1,1 @@
+export const GCP_API_KEY = 'AlzaSyBomQQTtbRfS56IfY-JR_aBaiP72qPF_0g';
