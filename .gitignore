@@ -70,4 +70,4 @@ testem.log
 Thumbs.db
 
 # Ignorar arquivos de segredos e chaves de API
-src/environments/enviroment.secret.ts
+src/environments/environment.secrets.ts
