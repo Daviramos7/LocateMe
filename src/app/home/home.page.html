@@ -46,8 +46,8 @@
 
     <ion-item *ngFor="let evento of eventos">
       <ion-label>
-        <h2>{{ evento.name }}</h2>
-        <p>{{ evento.formatted_address }}</p>
+        <h2>{{ evento.name | truncate:25 }}</h2>
+        <p>{{ evento.formatted_address | lowercase }}</p>
       </ion-label>
     </ion-item>
 

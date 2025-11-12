@@ -1,4 +1,5 @@
 
+import { TruncatePipe } from '../pipes/truncate-pipe';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ import { ApiService, Place } from '../components/api.service';
   imports: [
     CommonModule,
     FormsModule,
+    TruncatePipe,
     IonHeader,
     IonToolbar,
     IonTitle,
