@@ -1,23 +1,26 @@
-
-import { TruncatePipe } from '../pipes/truncate-pipe';
-import { Component } from '@angular/core';
+import { TruncatePipe } from '../pipes/truncate.pipe';
+import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import {
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
-  IonSearchbar,
-  IonButton,
   IonInput,
   IonList,
   IonItem,
   IonLabel,
-  IonSpinner
+  IonSpinner,
+  IonButton,
+  IonItemOption,
+  IonListHeader
 } from '@ionic/angular/standalone';
 
 import { ApiService, Place } from '../components/api.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -27,17 +30,19 @@ import { ApiService, Place } from '../components/api.service';
     CommonModule,
     FormsModule,
     TruncatePipe,
+    RouterModule,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
-    IonSearchbar,
-    IonButton,
     IonInput,
     IonList,
     IonItem,
     IonLabel,
-    IonSpinner
+    IonSpinner,
+    IonButton,
+    IonItemOption,
+    IonListHeader
   ],
 })
 export class HomePage {
@@ -46,7 +51,8 @@ export class HomePage {
   eventos: Place[] = [];
   carregando: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  private apiService = inject(ApiService);
+  constructor() {}
 
   buscarEventos() {
     if (!this.keywords || !this.city) {
@@ -55,14 +61,15 @@ export class HomePage {
     }
 
     this.carregando = true;
+    this.eventos = [];
 
     this.apiService.getEventosByCity(this.keywords, this.city).subscribe({
-      next: (res) => {
+      next: (res: Place[]) => {
         this.eventos = res;
         console.log('Eventos encontrados:', this.eventos);
         this.carregando = false;
       },
-      error: (err: any) => { // <-- tipo corrigido
+      error: (err: any) => { 
         console.error('ERRO COMPLETO DA API:', err);
         this.carregando = false;
       }

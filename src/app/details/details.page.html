@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Local</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <div *ngIf="isLoading" style="text-align: center;">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando detalhes...</p>
+  </div>
+
+  <div *ngIf="!isLoading && localDetalhes">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ localDetalhes.name }}</ion-card-title>
+        <ion-card-subtitle>{{ localDetalhes.formatted_address }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>ID do Local: {{ localDetalhes.place_id }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!isLoading && !localDetalhes">
+    <ion-item lines="none">
+      <ion-label color="danger">Não foi possível carregar os detalhes.</ion-label>
+    </ion-item>
+  </div>
+
+</ion-content>
