@@ -1,1 +1,0 @@
-export const GCP_API_KEY="AIzaSyBDCiV2q_qyFZinQEdY7YGH7liUcHrmG3w"

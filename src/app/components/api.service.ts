@@ -2,7 +2,7 @@
   import { Injectable } from '@angular/core';
   import { HttpClient, HttpParams } from '@angular/common/http';
   import { Observable } from 'rxjs';
-  import { GCP_API_KEY } from '../../environments/enviroment.secret';
+  import { GCP_API_KEY } from '../../environments/environment.secrets';
   import { map } from 'rxjs/operators';
 
   // definimos o endpoint base para o Places API (Text Search para busca)
