@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  
+
   <div *ngIf="isLoading" style="text-align: center;">
     <ion-spinner name="crescent"></ion-spinner>
     <p>Carregando detalhes...</p>
@@ -20,8 +20,28 @@
         <ion-card-title>{{ localDetalhes.name }}</ion-card-title>
         <ion-card-subtitle>{{ localDetalhes.formatted_address }}</ion-card-subtitle>
       </ion-card-header>
+
       <ion-card-content>
+
+        <ion-img *ngIf="photoUrl" 
+                 [src]="photoUrl" 
+                 alt="Foto do local"/>
+        <br>
+
+        <div *ngIf="localDetalhes.reviews && localDetalhes.reviews.length > 0">
+          <h3>Avaliações:</h3>
+          <ion-list>
+            <ion-item *ngFor="let review of localDetalhes.reviews">
+              <ion-label text-wrap>
+                <strong>{{ review.author_name }}</strong> (Nota: {{ review.rating }}/5)
+                <p>{{ review.text }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+
         <p>ID do Local: {{ localDetalhes.place_id }}</p>
+
       </ion-card-content>
     </ion-card>
   </div>

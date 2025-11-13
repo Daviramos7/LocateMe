@@ -8,7 +8,7 @@
   // definimos o endpoint base para o Places API (Text Search para busca)
   const PLACES_API_URL = '/api/maps/api/place/textsearch/json';
   const PLACE_DETAILS_API_URL = '/api/maps/api/place/details/json';
-  const PLACE_PHOTO_API_URL = 'maps/api/place/photo'
+  const PLACE_PHOTO_API_URL = '/api/maps/api/place/photo'
   // interfaces de Tipo para tipagem forte
   export interface Place {
     place_id: string;
