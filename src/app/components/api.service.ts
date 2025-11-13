@@ -82,7 +82,7 @@
       //campos puxados na requisição
       //esses campos devem ser incrementados futuramente, sendo mantidos apenas os dados básicos por agora por estarmos na fase inicial
       //do desenvolvimento e querermos economizar em requisições.
-      const fields = 'place_id,name,geometry,formatted_address, photos, reviews';
+      const fields = 'place_id,name,geometry,formatted_address,photos,reviews';
       
       let params = new HttpParams()
         .set('place_id', placeId)
@@ -99,7 +99,7 @@
             throw new Error(`Erro ao buscar detalhes: ${response.status}`);
           }
         })
-      );
+     );
     }
     
     getPhotoURL(photoReference: string, maxWidth: number = 400): string {
