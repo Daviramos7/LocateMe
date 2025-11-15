@@ -1,25 +1,25 @@
-import { TruncatePipe } from '../pipes/truncate.pipe';
-import { RouterModule } from '@angular/router';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonIcon,
+  IonList,
+  IonSpinner,
+  IonItem,
+  IonSearchbar,
+  IonButton,
+} from '@ionic/angular/standalone';
+import { ApiService, Place } from '../components/api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonInput,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonSpinner,
-  IonButton,
-  IonItemOption,
-  IonListHeader
-} from '@ionic/angular/standalone';
-
-import { ApiService, Place } from '../components/api.service';
 
 @Component({
   selector: 'app-home',
@@ -29,50 +29,70 @@ import { ApiService, Place } from '../components/api.service';
   imports: [
     CommonModule,
     FormsModule,
-    TruncatePipe,
-    RouterModule,
+    IonContent,
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonContent,
-    IonInput,
     IonList,
     IonItem,
-    IonLabel,
+    IonIcon,
     IonSpinner,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
+    IonSearchbar,
     IonButton,
-    IonItemOption,
-    IonListHeader
   ],
 })
-export class HomePage {
-  keywords: string = '';
-  city: string = '';
-  eventos: Place[] = [];
-  carregando: boolean = false;
+export class HomePage implements OnInit {
+  events: Place[] = [];
+  isLoading: boolean = false;
+  cityQuery: string = 'São Paulo'; // Default city
+  categories: string[] = ['Bares', 'Shows', 'Museus', 'Cafeterias', 'Parques', 'Restaurantes', 'Teatros', 'Baladas'];
+  selectedKeywords: Set<string> = new Set();
 
-  private apiService = inject(ApiService);
-  constructor() {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  buscarEventos() {
-    if (!this.keywords || !this.city) {
-      console.warn('⚠️ Preencha o tipo de evento e a cidade antes de buscar!');
-      return;
-    }
+  ngOnInit() {
+    // Initial load with default city and no keywords
+    this.search();
+  }
 
-    this.carregando = true;
-    this.eventos = [];
-
-    this.apiService.getEventosByCity(this.keywords, this.city).subscribe({
-      next: (res: Place[]) => {
-        this.eventos = res;
-        console.log('Eventos encontrados:', this.eventos);
-        this.carregando = false;
+  carregarEventos(keywords: string, city: string) {
+    this.isLoading = true;
+    this.apiService.getEventosByCity(keywords, city).subscribe({
+      next: (dados) => {
+        this.events = dados;
+        this.isLoading = false;
       },
-      error: (err: any) => { 
-        console.error('ERRO COMPLETO DA API:', err);
-        this.carregando = false;
+      error: (err) => {
+        console.error('Erro ao carregar eventos:', err);
+        this.isLoading = false;
       }
     });
+  }
+
+  toggleKeyword(keyword: string) {
+    if (this.selectedKeywords.has(keyword)) {
+      this.selectedKeywords.delete(keyword);
+    } else {
+      this.selectedKeywords.add(keyword);
+    }
+    this.search(); // Trigger search when keywords change
+  }
+
+  search() {
+    const keywords = Array.from(this.selectedKeywords).join(' ');
+    if (!this.cityQuery) {
+      // Maybe show a message to the user to enter a city
+      return;
+    }
+    this.carregarEventos(keywords || 'eventos', this.cityQuery); // if no keyword, search for 'eventos'
+  }
+
+  viewDetails(event: Place) {
+    this.router.navigate(['/details', event.place_id]);
   }
 }

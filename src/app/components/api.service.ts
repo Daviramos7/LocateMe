@@ -102,7 +102,7 @@
      );
     }
     
-    getPhotoURL(photoReference: string, maxWidth: number = 400): string {
+    getPhotoURL(photoReference: string, maxWidth: number = 1600): string {
       const params = new URLSearchParams ({
           'photo_reference' : photoReference,
           'maxwidth' : maxWidth.toString(),

@@ -1,0 +1,148 @@
+/* Estilos gerais para a página */
+ion-content {
+    --background: #f4f5f8;
+  }
+  
+  .hero-banner {
+    position: relative;
+    height: 50vh;
+    background: url('/assets/destination.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  .nav-bar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+  
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  
+    .auth-buttons {
+      /* Estilos para botões de autenticação */
+    }
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+  
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .search-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  
+    ion-searchbar {
+      --box-shadow: none;
+      --background: transparent;
+      flex-grow: 1;
+    }
+  
+    .search-button {
+      --border-radius: 50px;
+      margin-left: 0.5rem;
+    }
+  }
+  
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  
+    .category-btn {
+      --border-radius: 20px;
+    }
+  }
+  
+  .event-results-section {
+    padding: 2rem;
+  
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+  
+    .loading-state, .empty-state {
+      text-align: center;
+      padding: 2rem;
+  
+      ion-spinner {
+        width: 50px;
+        height: 50px;
+      }
+  
+      p {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
+    }
+  
+    .event-list-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px; /* Add some space between cards */
+    }
+  
+    .event-card {
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 2px solid var(--ion-color-success); /* Green border */
+      width: calc(50% - 8px); /* Two cards per row, considering the gap */
+  
+      &:hover {
+        transform: translateY(-5px);
+      }
+  
+      
+    }
+  }
+
+/* For smaller screens, one card per row */
+@media (max-width: 600px) {
+  .event-card {
+    width: 100%;
+  }
+}

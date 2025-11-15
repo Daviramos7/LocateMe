@@ -12,21 +12,26 @@
       <p>Explore os destinos mais populares, conheça e vivencie novas experiências de maneira sustentável.</p>
 
       <div class="search-box-container">
-        <ion-searchbar placeholder="O que você procura?"></ion-searchbar>
-        <ion-button color="success" class="search-button">Search</ion-button>
+        <ion-searchbar [(ngModel)]="cityQuery" (ionInput)="search()" placeholder="Digite uma cidade"></ion-searchbar>
+        <ion-button (click)="search()" color="success" class="search-button">Search</ion-button>
       </div>
       
       <div class="category-buttons">
-        <ion-button fill="outline" shape="round" color="light" class="category-btn">Bares</ion-button>
-        <ion-button fill="outline" shape="round" color="light" class="category-btn">Shows</ion-button>
-        <ion-button fill="outline" shape="round" color="light" class="category-btn">Museus</ion-button>
+        <ion-button 
+          *ngFor="let category of categories" 
+          (click)="toggleKeyword(category)" 
+          [color]="selectedKeywords.has(category) ? 'success' : 'light'"
+          fill="outline" 
+          shape="round" 
+          class="category-btn">
+          {{ category }}
+        </ion-button>
       </div>
     </div>
   </div>
   
   <div class="event-results-section">
 
-    //diretiva ngIf
     <div *ngIf="isLoading" class="loading-state">
       <ion-spinner name="crescent"></ion-spinner>
       <p>Buscando eventos...</p>
@@ -39,13 +44,10 @@
     <ion-list *ngIf="!isLoading && events && events.length > 0" class="event-list-container">
       <h2>Eventos Próximos</h2>
       
-      <ion-card class="event-card" appHoverHighlight>
-        <div class="card-image-box">
-          <img src="" alt="Imagem do Evento">
-        </div>
+      <ion-card *ngFor="let event of events" class="event-card" (click)="viewDetails(event)" appHoverHighlight>
         <ion-card-header>
-          <ion-card-title>Nome do Evento</ion-card-title>
-          <ion-card-subtitle>Local • Data</ion-card-subtitle>
+          <ion-card-title>{{ event.name }}</ion-card-title>
+          <ion-card-subtitle>{{ event.formatted_address }}</ion-card-subtitle>
         </ion-card-header>
       </ion-card>
       
