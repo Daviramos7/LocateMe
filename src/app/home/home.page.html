@@ -1,21 +1,18 @@
 <ion-content [fullscreen]="true">
-
   <div class="hero-banner">
-    
     <div class="nav-bar-overlay">
       <div class="logo">LocateMe</div> 
       <div class="auth-buttons">...</div>
     </div>
-    
+
     <div class="hero-content">
       <h1>Descubra seu próximo destino</h1>
       <p>Explore os destinos mais populares, conheça e vivencie novas experiências de maneira sustentável.</p>
-
       <div class="search-box-container">
         <ion-searchbar [(ngModel)]="cityQuery" (ionInput)="search()" placeholder="Digite uma cidade"></ion-searchbar>
         <ion-button (click)="search()" color="success" class="search-button">Search</ion-button>
       </div>
-      
+
       <div class="category-buttons">
         <ion-button 
           *ngFor="let category of categories" 
@@ -30,9 +27,8 @@
     </div>
   </div>
   
-  <div class="event-results-section">
-
-    <div *ngIf="isLoading" class="loading-state">
+      <div class="event-results-section">
+      <div *ngIf="isLoading" class="loading-state">
       <ion-spinner name="crescent"></ion-spinner>
       <p>Buscando eventos...</p>
     </div>
