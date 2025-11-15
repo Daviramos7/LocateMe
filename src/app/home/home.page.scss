@@ -41,7 +41,7 @@ ion-content {
     }
   
     .auth-buttons {
-      /* Estilos para botões de autenticação */
+      /* estilos dos botões para ação de autenticação */
     }
   }
   
@@ -123,14 +123,14 @@ ion-content {
     .event-list-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px; /* Add some space between cards */
+      gap: 16px; 
     }
   
     .event-card {
       cursor: pointer;
       transition: transform 0.2s;
-      border: 2px solid var(--ion-color-success); /* Green border */
-      width: calc(50% - 8px); /* Two cards per row, considering the gap */
+      border: 2px solid var(--ion-color-success); 
+      width: calc(50% - 8px); 
   
       &:hover {
         transform: translateY(-5px);
@@ -140,7 +140,6 @@ ion-content {
     }
   }
 
-/* For smaller screens, one card per row */
 @media (max-width: 600px) {
   .event-card {
     width: 100%;
