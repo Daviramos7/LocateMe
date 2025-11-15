@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'; // ARQUIVO DE TESTE DO DETAILS.PAGE
 import { DetailsPage } from './details.page';
 
 describe('DetailsPage', () => {
