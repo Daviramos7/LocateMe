@@ -33,11 +33,12 @@
     </ion-button>
 
   </div>
+  
+  <div class="event-results-section">
 
-  <ion-list>
-    
-    <ion-item *ngIf="carregando">
-      <ion-label>Carregando...</ion-label>
+    //diretiva ngIf
+    //diretiva If
+    <div *ngIf="isLoading" class="loading-state">
       <ion-spinner name="crescent"></ion-spinner>
     </ion-item>
 
