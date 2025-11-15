@@ -1,37 +1,27 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      LocateMe
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
 
-<ion-content>
-  <div class="ion-padding">
-
-    <ion-item>
-      <ion-label position="floating">O que você busca?</ion-label>
-      <ion-input 
-        [(ngModel)]="keywords" 
-        placeholder="Ex: museu, restaurante">
-      </ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Em qual cidade?</ion-label>
-      <ion-input 
-        [(ngModel)]="city" 
-        placeholder="Ex: Recife"
-        (keyup.enter)="buscarEventos()"> 
-      </ion-input>
-    </ion-item>
+  <div class="hero-banner">
     
-    <br>
+    <div class="nav-bar-overlay">
+      <div class="logo">LocateMe</div> 
+      <div class="auth-buttons">...</div>
+    </div>
+    
+    <div class="hero-content">
+      <h1>Descubra seu próximo destino</h1>
+      <p>Explore os destinos mais populares, conheça e vivencie novas experiências de maneira sustentável.</p>
 
-    <ion-button expand="block" color="primary" (click)="buscarEventos()">
-      Buscar
-    </ion-button>
-
+      <div class="search-box-container">
+        <ion-searchbar placeholder="O que você procura?"></ion-searchbar>
+        <ion-button color="success" class="search-button">Search</ion-button>
+      </div>
+      
+      <div class="category-buttons">
+        <ion-button fill="outline" shape="round" color="light" class="category-btn">Bares</ion-button>
+        <ion-button fill="outline" shape="round" color="light" class="category-btn">Shows</ion-button>
+        <ion-button fill="outline" shape="round" color="light" class="category-btn">Museus</ion-button>
+      </div>
+    </div>
   </div>
   
   <div class="event-results-section">
@@ -39,22 +29,26 @@
     //diretiva ngIf
     <div *ngIf="isLoading" class="loading-state">
       <ion-spinner name="crescent"></ion-spinner>
-    </ion-item>
-
-    <ion-item *ngIf="!carregando && eventos.length === 0">
-      <ion-label>Nenhum resultado para exibir.</ion-label>
-    </ion-item>
-
-    <ion-item *ngFor="let evento of eventos"
-              [routerLink]="['/details', evento.place_id]"
-              button
-              detail="true">
-      <ion-label>
-        <h2>{{ evento.name | truncate:25 }}</h2>
-        <p>{{ evento.formatted_address | lowercase }}</p>
-      </ion-label>
-    </ion-item>
-
-  </ion-list>
-
+      <p>Buscando eventos...</p>
+    </div>
+    
+    <div *ngIf="!isLoading && events && events.length === 0" class="empty-state">
+      <p>Nenhum evento encontrado.</p>
+    </div>
+    
+    <ion-list *ngIf="!isLoading && events && events.length > 0" class="event-list-container">
+      <h2>Eventos Próximos</h2>
+      
+      <ion-card class="event-card" appHoverHighlight>
+        <div class="card-image-box">
+          <img src="" alt="Imagem do Evento">
+        </div>
+        <ion-card-header>
+          <ion-card-title>Nome do Evento</ion-card-title>
+          <ion-card-subtitle>Local • Data</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+      
+    </ion-list>
+  </div>
 </ion-content>
