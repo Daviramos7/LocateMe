@@ -2,14 +2,14 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
-// Importações dos componentes Ionic Standalone
+// aqui são as importações dos componentes ionic standalone
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton,
   IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
   IonSpinner, IonItem, IonLabel, IonList, IonImg
 } from '@ionic/angular/standalone';
 
-// Importações do Serviço e das Interfaces
+// importações do serviço e das interfaces
 import { ApiService, PlaceDetails, Photo, Review } from '../components/api.service';
 
 @Component({
@@ -17,7 +17,7 @@ import { ApiService, PlaceDetails, Photo, Review } from '../components/api.servi
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
   standalone: true,
-  imports: [ // Lista de imports
+  imports: [ // lista de imports dos componentes ionic
     CommonModule,
     IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton,
     IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
@@ -27,29 +27,28 @@ import { ApiService, PlaceDetails, Photo, Review } from '../components/api.servi
 export class DetailsPage implements OnInit {
 
   private route = inject(ActivatedRoute);
-  private api = inject(ApiService); // O serviço do Gustavo
-
+  private api = inject(ApiService); // a atividade realizada serviço de Gustavo
   public localDetalhes: PlaceDetails | null = null;
   public isLoading = true;
-  public photoUrl: string | null = null; // Variável para a URL da foto
+  public photoUrl: string | null = null; // variável para a URL da foto
 
   constructor() { }
 
   ngOnInit() {
-    // Pega o 'id' da URL (Req. 7)
+    // pega o 'id' da URL (Req. 7)
     const placeId = this.route.snapshot.paramMap.get('id');
 
     if (placeId) {
-      // Chama a segunda função do Gustavo
+      // chama a segunda função de Gustavo
       this.api.getEventById(placeId).subscribe({
         next: (detalhes: PlaceDetails) => {
           this.localDetalhes = detalhes;
           this.isLoading = false;
 
-          // LÓGICA DA FOTO
+          // lógica da foto em questão
           if (detalhes.photos && detalhes.photos.length > 0) {
             const photoRef = detalhes.photos[0].photo_reference;
-            // Chama a função 'getPhotoURL' do Gustavo para construir a URL
+            // chama a função 'getPhotoURL' de Gustavo ( que ficou responsável pela API e sua arquitetura) para construir a URL
             this.photoUrl = this.api.getPhotoURL(photoRef);
           }
         },
