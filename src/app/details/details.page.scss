@@ -1,0 +1,27 @@
+ion-toolbar {
+  --background: var(--ion-color-light); 
+}
+
+ion-content {
+  --background: #f8f9fa; // aqui aplicamos um fundo branco suave //
+}
+
+//garante que o grid use o sistema de breakpoints responsivo de maneira adequada //
+ion-grid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+// cores tailwind css iguais no ionic //
+.text-success-500 {
+    color: var(--ion-color-success);
+}
+.bg-success-100\/50 {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+// responsividade de Imagens para o mock //
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
