@@ -20,6 +20,8 @@ import {
 import { ApiService, Place } from '../components/api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+// CORREÇÃO: O caminho correto para a sua diretiva dentro da pasta 'shared'.
+import { HoverHighlightDirective } from '../shared/hover-highlight.directive'; 
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    // Componentes Ionic
     IonContent,
     IonHeader,
     IonToolbar,
@@ -44,6 +47,8 @@ import { FormsModule } from '@angular/forms';
     IonCardContent,
     IonSearchbar,
     IonButton,
+    // ADIÇÃO: Incluindo a diretiva para que o HTML a reconheça.
+    HoverHighlightDirective, 
   ],
 })
 export class HomePage implements OnInit {
@@ -56,7 +61,6 @@ export class HomePage implements OnInit {
   constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
-    // Initial load with default city and no keywords
     this.search();
   }
 
@@ -80,16 +84,15 @@ export class HomePage implements OnInit {
     } else {
       this.selectedKeywords.add(keyword);
     }
-    this.search(); // Trigger search when keywords change
+    this.search();
   }
 
   search() {
     const keywords = Array.from(this.selectedKeywords).join(' ');
     if (!this.cityQuery) {
-      // Maybe show a message to the user to enter a city
       return;
     }
-    this.carregarEventos(keywords || 'eventos', this.cityQuery); // if no keyword, search for 'eventos'
+    this.carregarEventos(keywords || 'eventos', this.cityQuery);
   }
 
   viewDetails(event: Place) {
