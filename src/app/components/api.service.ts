@@ -23,7 +23,7 @@
     width: number;
     html_attributions: string[]
   }
-  // Interface das reviews que são puxadas
+  // interface das reviews que são puxadas
   export interface Review{
     author_name: string;
     rating: number;
