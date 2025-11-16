@@ -1,147 +1,297 @@
-/* estilos gerais para a página */
+// background geral da página
 ion-content {
-    --background: #f4f5f8;
-  }
-  
-  .hero-banner {
-    position: relative;
-    height: 50vh;
-    background: url('/assets/destination.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+ --background: linear-gradient(to bottom, #2ecc71 0%, #2ecc71 20%, #a3e7c6 40%, #ffffff 100%);
+}
+
+// topo: banner hero
+.hero-banner {
+  background: transparent; // Fundo branco quase opaco
+  padding: 20px;
+  min-height: 400px;
+  position: relative;
+  box-shadow: none;
+}
+
+// barra de navegação
+.nav-bar-overlay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+
+  .logo {
+    font-size: 26px;
+    font-weight: 700;
     color: white;
-    text-align: center;
-  
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
-  .nav-bar-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem 2rem;
+
+  .auth-buttons {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 2;
-  
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-  
-    .auth-buttons {
-      /* estilos dos botões para ação de autenticação */
-    }
+    gap: 12px;
+    color: white
   }
-  
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
-  
-    h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-  
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
+}
+
+// conteúdo principal do banner hero
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  .search-box-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 50px;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  
-    ion-searchbar {
-      --box-shadow: none;
-      --background: transparent;
-      flex-grow: 1;
-    }
-  
-    .search-button {
-      --border-radius: 50px;
-      margin-left: 0.5rem;
-    }
+
+  p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.95)
   }
-  
-  .category-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-  
-    .category-btn {
-      --border-radius: 20px;
-    }
-  }
-  
-  .event-results-section {
-    padding: 2rem;
-  
-    h2 {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-    }
-  
-    .loading-state, .empty-state {
-      text-align: center;
-      padding: 2rem;
-  
-      ion-spinner {
-        width: 50px;
-        height: 50px;
-      }
-  
-      p {
-        margin-top: 1rem;
-        font-size: 1.2rem;
-      }
-    }
-  
-    .event-list-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px; 
-    }
-  
-    .event-card {
-      cursor: pointer;
-      transition: transform 0.2s;
-      border: 2px solid var(--ion-color-success); 
-      width: calc(50% - 8px); 
-  
-      &:hover {
-        transform: translateY(-5px);
-      }
-  
-      
+}
+
+// container search 
+.search-box-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto 24px;
+
+  ion-searchbar {
+    --background: white;
+    --border-radius: 30px;
+    --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --color: #2c3e50;
+    --icon-color: #95a5a6;
+    --placeholder-color: #bdc3c7;
+    --placeholder-opacity: 1;
+    
+    flex: 1;
+    padding: 0;
+    margin: 0;
+
+    &::part(native) {
+      border-radius: 30px;
+      padding: 14px 24px;
+      border: 2px solid #ecf0f1;
     }
   }
 
-@media (max-width: 600px) {
+  .search-button {
+    --background: #2ecc71;
+    --background-activated: #27ae60;
+    --background-hover: #27ae60;
+    --color: white;
+    --border-radius: 30px;
+    --box-shadow: 0 3px 12px rgba(46, 204, 113, 0.3);
+    --padding-top: 14px;
+    --padding-bottom: 14px;
+    --padding-start: 32px;
+    --padding-end: 32px;
+    
+    height: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      --box-shadow: 0 5px 18px rgba(46, 204, 113, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// botões de categorias
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .category-btn {
+    --background: transparent;
+    --background-activated: #2ecc71;
+    --color: #7f8c8d;
+    --border-color: #bdc3c7;
+    --border-width: 2px;
+    --border-radius: 25px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    --padding-start: 24px;
+    --padding-end: 24px;
+    
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 44px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      --border-color: #2ecc71;
+      --color: #2ecc71;
+    }
+
+    // seleção de categoria ativa
+    &[color="success"] {
+      --background: #2ecc71;
+      --color: white;
+      --border-color: #2ecc71;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(46, 204, 113, 0.4);
+    }
+  }
+}
+
+// seção de resultados das opções 
+.event-results-section {
+  background: rgba(255, 255, 255, 0.98);
+  min-height: 400px;
+  padding: 50px 20px;
+  position: relative;
+  margin-top: 30px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+}
+
+// em loading
+.loading-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #7f8c8d;
+
+  ion-spinner {
+    width: 50px;
+    height: 50px;
+    --color: #2ecc71;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #95a5a6;
+    font-weight: 500;
+  }
+}
+
+// sem resultados = vazio
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+
+  p {
+    font-size: 18px;
+    color: #95a5a6;
+    font-weight: 500;
+  }
+}
+
+// listagem de opções (eventos)
+.event-list-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: transparent;
+  padding: 0;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    padding: 0 8px;
+  }
+
+  // cards de opções (eventos)
   .event-card {
-    width: 100%;
+    --background: white;
+    background: white;
+    border: 3px solid #2ecc71; 
+    border-radius: 16px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(46, 204, 113, 0.25);
+      border-color: #27ae60; // verde mais escuro no hover
+    }
+
+    // caso queiramos adicionar imagens
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    ion-card-header {
+      padding: 24px;
+      background: #2ecc71;
+    }
+
+    ion-card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    ion-card-subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+}
+
+// responsividade para telas menores
+@media (max-width: 768px) {
+  .hero-content {
+    h1 {
+      font-size: 32px; // menor no mobile
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .search-box-container {
+    flex-direction: column; // empilha verticalmente no mobile
+
+    ion-searchbar,
+    .search-button {
+      width: 100%;
+    }
+  }
+
+  .category-buttons {
+    .category-btn {
+      font-size: 11px;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      height: 38px;
+    }
+  }
+
+  .event-list-container {
+    h2 {
+      font-size: 26px;
+    }
   }
 }
