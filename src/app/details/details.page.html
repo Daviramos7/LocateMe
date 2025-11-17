@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <div *ngIf="isLoading" style="text-align: center;">
+  <div *ngIf="isLoading" class="loading-container">
     <ion-spinner name="crescent"></ion-spinner>
     <p>Carregando detalhes...</p>
   </div>
+
   <div *ngIf="!isLoading && localDetalhes">
     <ion-card>
       <ion-card-header>
@@ -21,26 +21,27 @@
       </ion-card-header>
 
       <ion-card-content>
+        
+        <img *ngIf="photoUrl" 
+             [src]="photoUrl" 
+             alt="Foto do local" 
+             class="header-image" />
 
-        <ion-img *ngIf="photoUrl" 
-                 [src]="photoUrl" 
-                 alt="Foto do local"/>
-        <br>
+        <div class="info-content">
+          <div class="reviews-section" *ngIf="localDetalhes.reviews && localDetalhes.reviews.length > 0">
+            <h3>Avaliações:</h3>
+            <ion-list>
+              <ion-item *ngFor="let review of localDetalhes.reviews">
+                <ion-label text-wrap>
+                  <strong>{{ review.author_name }}</strong> <span>(Nota: {{ review.rating }}/5)</span>
+                  <p>{{ review.text }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </div>
 
-        <div *ngIf="localDetalhes.reviews && localDetalhes.reviews.length > 0">
-          <h3>Avaliações:</h3>
-          <ion-list>
-            <ion-item *ngFor="let review of localDetalhes.reviews">
-              <ion-label text-wrap>
-                <strong>{{ review.author_name }}</strong> (Nota: {{ review.rating }}/5)
-                <p>{{ review.text }}</p>
-              </ion-label>
-            </ion-item>
-          </ion-list>
+          <p>ID do Local: {{ localDetalhes.place_id }}</p>
         </div>
-
-        <p>ID do Local: {{ localDetalhes.place_id }}</p>
-
       </ion-card-content>
     </ion-card>
   </div>
@@ -50,5 +51,4 @@
       <ion-label color="danger">Não foi possível carregar os detalhes.</ion-label>
     </ion-item>
   </div>
-
 </ion-content>

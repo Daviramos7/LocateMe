@@ -1,11 +1,12 @@
 // background geral da página
 ion-content {
- --background: linear-gradient(to bottom, #2ecc71 0%, #2ecc71 20%, #a3e7c6 40%, #ffffff 100%);
+  // Gradiente de verde claro suave para branco
+  --background: url('../../assets/img/background.jpg') no-repeat center center / cover;
 }
 
 // topo: banner hero
 .hero-banner {
-  background: transparent; // Fundo branco quase opaco
+  background: transparent; 
   padding: 20px;
   min-height: 400px;
   position: relative;
@@ -26,6 +27,17 @@ ion-content {
     color: white;
     letter-spacing: 0.5px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-direction: row-reverse; // Logo à direita do texto
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
   }
 
   .auth-buttons {
@@ -81,17 +93,17 @@ ion-content {
     &::part(native) {
       border-radius: 30px;
       padding: 14px 24px;
-      border: 2px solid #ecf0f1;
+      border: 2px solid #E8F5E9; // Borda verde bem clara
     }
   }
 
   .search-button {
-    --background: #2ecc71;
-    --background-activated: #27ae60;
-    --background-hover: #27ae60;
+    --background: #66BB6A; // Verde claro
+    --background-activated: #4CAF50;
+    --background-hover: #4CAF50;
     --color: white;
     --border-radius: 30px;
-    --box-shadow: 0 3px 12px rgba(46, 204, 113, 0.3);
+    --box-shadow: 0 3px 12px rgba(102, 187, 106, 0.3); // Sombra verde clara
     --padding-top: 14px;
     --padding-bottom: 14px;
     --padding-start: 32px;
@@ -105,7 +117,7 @@ ion-content {
     transition: all 0.3s ease;
 
     &:hover {
-      --box-shadow: 0 5px 18px rgba(46, 204, 113, 0.4);
+      --box-shadow: 0 5px 18px rgba(102, 187, 106, 0.4);
       transform: translateY(-2px);
     }
   }
@@ -122,7 +134,7 @@ ion-content {
 
   .category-btn {
     --background: transparent;
-    --background-activated: #2ecc71;
+    --background-activated: #66BB6A; // Verde claro
     --color: #7f8c8d;
     --border-color: #bdc3c7;
     --border-width: 2px;
@@ -140,17 +152,17 @@ ion-content {
     transition: all 0.2s ease;
 
     &:hover {
-      --border-color: #2ecc71;
-      --color: #2ecc71;
+      --border-color: #66BB6A; // Verde claro
+      --color: #66BB6A;
     }
 
     // seleção de categoria ativa
     &[color="success"] {
-      --background: #2ecc71;
+      --background: #66BB6A; // Verde claro
       --color: white;
-      --border-color: #2ecc71;
+      --border-color: #66BB6A;
       font-weight: 700;
-      box-shadow: 0 2px 8px rgba(46, 204, 113, 0.4);
+      box-shadow: 0 2px 8px rgba(102, 187, 106, 0.4);
     }
   }
 }
@@ -175,7 +187,7 @@ ion-content {
   ion-spinner {
     width: 50px;
     height: 50px;
-    --color: #2ecc71;
+    --color: #66BB6A; // Verde claro
     margin-bottom: 20px;
   }
 
@@ -217,7 +229,7 @@ ion-content {
   .event-card {
     --background: white;
     background: white;
-    border: 3px solid #2ecc71; 
+    border: 3px solid #66BB6A; // Verde claro
     border-radius: 16px;
     margin-bottom: 24px;
     cursor: pointer;
@@ -227,8 +239,8 @@ ion-content {
 
     &:hover {
       transform: translateY(-6px);
-      box-shadow: 0 8px 24px rgba(46, 204, 113, 0.25);
-      border-color: #27ae60; // verde mais escuro no hover
+      box-shadow: 0 8px 24px rgba(102, 187, 106, 0.25);
+      border-color: #4CAF50; // Verde um pouco mais escuro no hover
     }
 
     // caso queiramos adicionar imagens
@@ -240,7 +252,7 @@ ion-content {
 
     ion-card-header {
       padding: 24px;
-      background: #2ecc71;
+      background: #66BB6A; // Verde claro
     }
 
     ion-card-title {
@@ -261,6 +273,17 @@ ion-content {
 
 // responsividade para telas menores
 @media (max-width: 768px) {
+  .nav-bar-overlay {
+    .logo {
+      font-size: 22px;
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+
   .hero-content {
     h1 {
       font-size: 32px; // menor no mobile
